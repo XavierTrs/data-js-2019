@@ -11,6 +11,7 @@ Import
 
     //=> Inner
     const FrontRouterClass = require('./routes/front/front.routes');
+    const d3RouterClass = require('./routes/d3/d3.routes');
 //
 
 /*
@@ -35,7 +36,10 @@ Configuration
             server.use(bodyParser.urlencoded({extended:true}));
 
             //=> Routers
+            const d3Router = new d3RouterClass();
             const frontRouter = new FrontRouterClass();
+           
+            server.use('/api/d3',d3Router.init());
             server.use('/',frontRouter.init());
 
             //=> Start server
